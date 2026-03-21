@@ -10,6 +10,6 @@ class HelloText: Command {
         editor.insert("Hello World", 0)
     }
     override fun undo(editor: Editor) {
-        editor.insert(name, 0)
+        editor.replace("", 0..<"Hello World".length)
     }
 }

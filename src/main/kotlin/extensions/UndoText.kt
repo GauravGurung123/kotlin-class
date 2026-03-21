@@ -10,5 +10,6 @@ class UndoText: Command {
         editor.undo()
     }
     override fun undo(editor: Editor) {
+        editor.replace("", 0..<"Hello World".length)
     }
 }
