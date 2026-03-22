@@ -5,11 +5,11 @@ import Editor
 
 class HelloText: Command {
     override val name = "Hello Text"
-
+    val insertedText = "Hello World"
     override fun execute(editor: Editor) {
-        editor.insert("Hello World", 0)
+        editor.insert(insertedText, 0)
     }
     override fun undo(editor: Editor) {
-        editor.replace("", 0..<"Hello World".length)
+        editor.replace("", 0..<  insertedText.length)
     }
 }
