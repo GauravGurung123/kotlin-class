@@ -1,7 +1,7 @@
-package extensions
+package plugins.editor
 
-import Command
-import Editor
+import core.Command
+import core.Editor
 
 class UndoText: Command {
     override val name = "Undo"

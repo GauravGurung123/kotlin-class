@@ -1,4 +1,4 @@
-package lab2
+package lab
 
 import kotlin.collections.forEach
 

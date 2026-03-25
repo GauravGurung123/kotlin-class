@@ -1,8 +1,8 @@
-import lab2.DirectoryElement
-import lab2.Element
-import lab2.FileElement
-import lab2.allDirectories
-import lab2.allFiles
+import lab.DirectoryElement
+import lab.Element
+import lab.FileElement
+import lab.allDirectories
+import lab.allFiles
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

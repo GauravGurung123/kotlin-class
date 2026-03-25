@@ -1,5 +1,7 @@
-import extensions.HelloText
-import extensions.UndoText
+import core.Command
+import core.Editor
+import plugins.editor.HelloText
+import plugins.editor.UndoText
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

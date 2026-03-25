@@ -1,3 +1,5 @@
+package lab
+
 fun main(){
     val s = "Hello world"
     greeting(s)

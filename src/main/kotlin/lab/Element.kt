@@ -1,4 +1,4 @@
-package lab2
+package lab
 
 sealed class Element(
     val name: String,

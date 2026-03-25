@@ -1,8 +1,6 @@
-
-import extensions.Hello
+package lab
 import java.io.File
 import kotlin.collections.forEach
-import kotlin.reflect.full.createInstance
 
 fun List<File>.distinctExtensions(): Set<String>
 {
@@ -41,13 +39,13 @@ fun List<File>.getFiles(ls: List<String> ): List<String>
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val fl = File("extensions.config").readLines()
-    println(fl)
-
-    fl.forEach { className ->
-        val clazz = Class.forName("extensions.$className").kotlin
-        val hello = clazz.createInstance() as Hello
-        println(hello.sayHello() + "!")
-    }
+//    val fl = File("extensions.config").readLines()
+//    println(fl)
+//
+//    fl.forEach { className ->
+//        val clazz = Class.forName("extensions.$className").kotlin
+//        val hello = clazz.createInstance() as Hello
+//        println(hello.sayHello() + "!")
+//    }
 
 }
