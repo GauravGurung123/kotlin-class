@@ -3,6 +3,9 @@ package app
 import core.Greeter
 
 fun main() {
-    loadFromConfig<Greeter>("extensions.config", "plugins.greeting")
+    val configFile = "extensions.config"
+    val packagePrefix = "plugins.greeting"
+
+    loadFromConfig<Greeter>(configFile, packagePrefix)
         .forEach { println(it.greet() + "!") }
 }

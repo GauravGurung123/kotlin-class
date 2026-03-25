@@ -18,6 +18,8 @@ private class CloseCommand : Command {
 
 class MicroEditorFw : Editor {
     private val frame     = JFrame("Micro Text Editor Framework")
+    private val configFile = "textEditor.config"
+    private val packagePrefix = "plugins.editor"
     private val buttons = JPanel(FlowLayout(FlowLayout.CENTER))
     private val textArea  = JTextArea()
     private val commandStack = mutableListOf<Command>()
@@ -28,12 +30,11 @@ class MicroEditorFw : Editor {
         frame.add(textArea)
 
         val commands = mutableListOf<Command>(CloseCommand())
-        commands.addAll(loadCommands("textEditor.config"))
+        commands.addAll(loadCommands())
         commands.forEach { addButton(it) }
     }
 
-    private fun loadCommands(configFile: String): List<Command> =
-        loadFromConfig(configFile, "plugins.editor")
+    private fun loadCommands(): List<Command> = loadFromConfig(configFile, packagePrefix)
     private fun addButton(command: Command) {
         buttons.add(JButton(command.name).apply {
             addActionListener {
