@@ -13,8 +13,7 @@ class WordCountText : Command {
             .split(Regex("\\s+"))
             .filter { it.isNotEmpty() }
             .size
-
-        editor.prompt("Word count: $count")     // reuse prompt as a read-only dialog
+        editor.message("Word count: $count")
     }
 
     override fun undo(editor: Editor) {

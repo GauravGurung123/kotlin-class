@@ -4,6 +4,7 @@ import core.Command
 import core.Editor
 import java.awt.BorderLayout
 import java.awt.Dimension
+import java.awt.FlowLayout
 import java.io.File
 import javax.swing.*
 import kotlin.reflect.full.createInstance
@@ -17,12 +18,11 @@ private class CloseCommand : Command {
 
 class MicroEditorFw : Editor {
     private val frame     = JFrame("Micro Text Editor Framework")
-    private val buttons   = JPanel()
+    private val buttons = JPanel(FlowLayout(FlowLayout.CENTER))
     private val textArea  = JTextArea()
     private val commandStack = mutableListOf<Command>()
-
     init {
-        frame.size = Dimension(400, 200)
+        frame.size = Dimension(600, 400)
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.add(buttons, BorderLayout.NORTH)
         frame.add(textArea)
@@ -33,10 +33,14 @@ class MicroEditorFw : Editor {
     }
 
     private fun loadCommands(configFile: String): List<Command> =
-        File(configFile).readLines().map { className ->
-            Class.forName("plugins.editor.$className").kotlin.createInstance() as Command
+        File(configFile).readLines().mapNotNull { className ->
+            try {
+                Class.forName("plugins.editor.$className").kotlin.createInstance() as Command
+            } catch (e: Exception) {
+                println("Failed to load command '$className': ${e.message}")
+                null
+            }
         }
-
     private fun addButton(command: Command) {
         buttons.add(JButton(command.name).apply {
             addActionListener {
@@ -65,6 +69,9 @@ class MicroEditorFw : Editor {
     override fun undo() {
         if (commandStack.isNotEmpty())
             commandStack.removeAt(commandStack.size - 1).undo(this)
+    }
+    override fun message(text: String) {
+        JOptionPane.showMessageDialog(frame, text)
     }
 }
 

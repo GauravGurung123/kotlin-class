@@ -8,5 +8,6 @@ interface Editor {
     fun replace(text: String, selection: IntRange)
     fun setSelection(selection: IntRange)
     fun prompt(text: String): String?
+    fun message(text: String)
     fun undo()
 }
