@@ -5,7 +5,6 @@ import core.Greeter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.io.File
 
 @DisplayName("Greeting plugins loaded via ConfigLoader")
 class GreetingPluginTest {
