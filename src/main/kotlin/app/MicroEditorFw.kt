@@ -33,14 +33,7 @@ class MicroEditorFw : Editor {
     }
 
     private fun loadCommands(configFile: String): List<Command> =
-        File(configFile).readLines().mapNotNull { className ->
-            try {
-                Class.forName("plugins.editor.$className").kotlin.createInstance() as Command
-            } catch (e: Exception) {
-                println("Failed to load command '$className': ${e.message}")
-                null
-            }
-        }
+        loadFromConfig(configFile, "plugins.editor")
     private fun addButton(command: Command) {
         buttons.add(JButton(command.name).apply {
             addActionListener {
