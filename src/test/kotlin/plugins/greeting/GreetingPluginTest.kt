@@ -19,6 +19,8 @@ class GreetingPluginTest {
         // Check that all greeters implement the contract
         greeters.forEach { greeter ->
             val greeting = greeter.greet()
+            println("${greeter::class.simpleName}: $greeting")
+
             assertTrue(greeting.isNotBlank(), "${greeter::class.simpleName} returned blank")
         }
 
