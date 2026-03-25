@@ -11,12 +11,12 @@ class WordCountText : Command {
         val count = editor.text
             .trim()
             .split(Regex("\\s+"))
-            .filter { it.isNotEmpty() }
-            .size
+            .count { it.isNotEmpty() }
+
         editor.message("Word count: $count")
     }
 
     override fun undo(editor: Editor) {
-        // read-only command — nothing to undo
+        // Read-only command → nothing to undo
     }
 }
