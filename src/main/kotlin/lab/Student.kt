@@ -40,11 +40,29 @@ fun mapType(type: KType): String
 fun mapAnnotation(clazz: KAnnotatedElement, default: String) :String {
     return clazz.findAnnotation<Dbname>()?.name ?: default
 }
+fun insertInto(obj: Any) : String {
+    require(obj::class.isData)
+    var insertQuery = "insert into " + mapAnnotation(obj::class, obj::class.simpleName!!) +
+     "(" + obj::class.declaredMemberProperties
+        .joinToString { mapAnnotation(it, it.name)  } + ")"
 
-fun mapAnnotationFields(field: KProperty<*>){
+    var values = "values (" + obj::class.declaredMemberProperties.joinToString {
+        addQuotes(mapType(it.returnType),it.call(obj).toString())
+    }+ ")"
 
+    return insertQuery + " " + values
+}
+
+fun addQuotes(type: String, value: String): String {
+    if (type=="VARCHAR"){
+        return "'" + value + "'"
+    }
+    return value
 }
 fun main(){
-    val result = generateCreateTable(Student::class)
-    println(result)
+//    val result = generateCreateTable(Student::class)
+//    println(result)
+    val s = Student(26503, "André")
+    println(insertInto(s))
+
 }
