@@ -2,7 +2,6 @@ package lab
 
 import kotlin.reflect.KAnnotatedElement
 import kotlin.reflect.KClass
-import kotlin.reflect.KProperty
 import kotlin.reflect.KType
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.findAnnotation
@@ -42,26 +41,26 @@ fun mapAnnotation(clazz: KAnnotatedElement, default: String) :String {
 }
 fun insertInto(obj: Any) : String {
     require(obj::class.isData)
-    var insertQuery = "insert into " + mapAnnotation(obj::class, obj::class.simpleName!!) +
+    val insertQuery = "insert into " + mapAnnotation(obj::class, obj::class.simpleName!!) +
      "(" + obj::class.declaredMemberProperties
         .joinToString { mapAnnotation(it, it.name)  } + ")"
 
-    var values = "values (" + obj::class.declaredMemberProperties.joinToString {
+    val values = "values (" + obj::class.declaredMemberProperties.joinToString {
         addQuotes(mapType(it.returnType),it.call(obj).toString())
     }+ ")"
 
-    return insertQuery + " " + values
+    return "$insertQuery $values"
 }
 
 fun addQuotes(type: String, value: String): String {
     if (type=="VARCHAR"){
-        return "'" + value + "'"
+        return "'$value'"
     }
     return value
 }
 fun main(){
-//    val result = generateCreateTable(Student::class)
-//    println(result)
+    val result = generateCreateTable(Student::class)
+    println(result)
     val s = Student(26503, "André")
     println(insertInto(s))
 
