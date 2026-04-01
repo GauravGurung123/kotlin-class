@@ -1,6 +1,5 @@
-import lab.countExtensions
-import lab.distinctExtensions
-import lab.getFiles
+package lab
+
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals

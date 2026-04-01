@@ -1,7 +1,8 @@
 package lab
 import java.io.File
 import kotlin.collections.forEach
-
+import kunit.runner.KUnit
+import kunit.tests.MyTests
 fun List<File>.distinctExtensions(): Set<String>
 {
     val result = mutableSetOf<String>()
@@ -39,6 +40,10 @@ fun List<File>.getFiles(ls: List<String> ): List<String>
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+    val kunit = KUnit(MyTests::class)
+    val results = kunit.testResults()
+
+    results.forEach(::println)
 //    val fl = File("extensions.config").readLines()
 //    println(fl)
 //
