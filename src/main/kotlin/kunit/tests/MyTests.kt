@@ -9,7 +9,7 @@ class MyTests {
     @TestCase
     fun testSize() {
         val list = listOf(1, 2, 3)
-        assertEquals(3, list.size)
+        assertEquals(33, list.size)
     }
 
     @TestCase

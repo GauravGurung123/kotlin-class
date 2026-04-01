@@ -41,9 +41,9 @@ fun List<File>.getFiles(ls: List<String> ): List<String>
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
     val kunit = KUnit(MyTests::class)
-    val results = kunit.testResults()
-
-    results.forEach(::println)
+    val results = kunit.runTests()
+//    results.forEach(::println)
+    kunit.runAndPrintSummary()
 //    val fl = File("extensions.config").readLines()
 //    println(fl)
 //
